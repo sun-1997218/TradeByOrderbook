@@ -163,7 +163,7 @@ def fetch_kline(params: RequestParams):
 
     headers = {
         "accept": "application/json",
-        "apikey": "38efe53f82ee40e7956a0e2565aae93f"  # 使用你的 API 密钥
+        "apikey": ""  # 使用你的 API 密钥
     }
 
     response = requests.get(url, params=params.dict(), headers=headers)
@@ -185,7 +185,7 @@ def send_email(subject, body):
     """发送邮件"""
     sender_email = "1091282902@qq.com"
     receiver_email = "2199483735@qq.com"
-    password = "noelhxuvgwlphcjc"
+    password = ""
 
     msg = MIMEMultipart()
     msg['From'] = sender_email
