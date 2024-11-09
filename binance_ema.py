@@ -91,7 +91,7 @@ def send_email(subject, body):
     """发送邮件"""
     sender_email = "1091282902@qq.com"
     receiver_email = "2492088534@qq.com"
-    password = "qovxazwjbqonbada"
+    password = ""
 
     msg = MIMEMultipart()
     msg['From'] = sender_email
