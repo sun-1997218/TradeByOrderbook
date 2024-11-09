@@ -145,7 +145,7 @@ def fetch_order_flow(params: RequestParams):
     url = "https://open-api.coinank.com/api/orderFlow/lists"
     headers = {
         "accept": "application/json",
-        "apikey": "38efe53f82ee40e7956a0e2565aae93f"  # 使用你的 API 密钥
+        "apikey": ""  # 使用你的 API 密钥
     }
     response = requests.get(url, params=params.dict(), headers=headers)
     if response.status_code == 200 :
