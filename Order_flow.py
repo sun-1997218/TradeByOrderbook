@@ -183,8 +183,8 @@ def fetch_kline(params: RequestParams):
 
 def send_email(subject, body):
     """发送邮件"""
-    sender_email = "1091282902@qq.com"
-    receiver_email = "2199483735@qq.com"
+    sender_email = ""
+    receiver_email = ""
     password = ""
 
     msg = MIMEMultipart()
@@ -235,8 +235,8 @@ def if_send_email_1h(symbol_dict,symbol,open,close):
         logger.info(f"open:{open},POC:{symbol_dict['POC_price']},close:{close},symbol{symbol}")
         if(symbol_dict["POC_price"]<=Min or symbol_dict["POC_price"]>=Max):
             rate = (int)(minvalue/(symbol_dict["max_price"]-symbol_dict['min_price'])*100)
-            if Isred==True: send_email(f"1小时鲜红K线呀呀呀 {symbol} Order_flow Alert", f"\n 侦测到 POC {symbol_dict['POC_price']} \n 跳出两端  \n rate: {rate} ")
-            else :send_email(f"1小时绿绿绿哦哦哦哦 {symbol} Order_flow Alert", f"\n 侦测到 POC {symbol_dict['POC_price']} \n 跳出两端  \n rate: {rate} ")
+            if Isred==True: send_email(f"1小时鲜红线 {symbol} Order_flow Alert", f"\n 侦测到 POC {symbol_dict['POC_price']} \n 跳出两端  \n rate: {rate} ")
+            else :send_email(f"1小时绿绿绿 {symbol} Order_flow Alert", f"\n 侦测到 POC {symbol_dict['POC_price']} \n 跳出两端  \n rate: {rate} ")
 
 def if_send_email_4h(symbol_dict,symbol,open,close): 
         minvalue= min(abs(symbol_dict["max_price"]-symbol_dict["POC_price"]),abs(symbol_dict["min_price"]-symbol_dict["POC_price"]))
@@ -251,8 +251,8 @@ def if_send_email_4h(symbol_dict,symbol,open,close):
         logger.info(f"open:{open},POC:{symbol_dict['POC_price']},close:{close},symbol{symbol}")
         if(symbol_dict["POC_price"]<=Min or symbol_dict["POC_price"]>=Max):
             rate = (int)(minvalue/(symbol_dict["max_price"]-symbol_dict['min_price'])*100)
-            if Isred==True: send_email(f"4小时鲜红K线呀呀呀 {symbol} Order_flow Alert", f"\n 侦测到 POC {symbol_dict['POC_price']} \n 跳出两端  \n rate: {rate} ")
-            else :send_email(f"4小时绿绿绿哦哦哦哦 {symbol} Order_flow Alert", f"\n 侦测到 POC {symbol_dict['POC_price']} \n 跳出两端  \n rate: {rate} ")
+            if Isred==True: send_email(f"4小时鲜红线 {symbol} Order_flow Alert", f"\n 侦测到 POC {symbol_dict['POC_price']} \n 跳出两端  \n rate: {rate} ")
+            else :send_email(f"4小时绿绿绿 {symbol} Order_flow Alert", f"\n 侦测到 POC {symbol_dict['POC_price']} \n 跳出两端  \n rate: {rate} ")
 
 def process_symbol_1h(symbol, all_coins, all_coins_minmaxvalue):
 
@@ -424,7 +424,7 @@ def process_symbol_4h(symbol, all_coins, all_coins_minmaxvalue):
             # 调整当前时间级别的POC
             if all_coins[symbol][value] > all_coins_minmaxvalue[symbol]["POC_value"]:
                 all_coins_minmaxvalue[symbol]["POC_value"] = all_coins[symbol][value]
-                all_coins_minmaxvalue[symbol]["POC_price"] = value
+                all_coins_minmaxvalue[symbol]["POC_price"] = value  
         
             # 非阻塞地发送邮件
         send_email_non_blocking_4h(all_coins_minmaxvalue[symbol], symbol,Kline_response_data.data[0].open_price,Kline_response_data.data[0].close_price)
@@ -433,7 +433,7 @@ def process_symbol_4h(symbol, all_coins, all_coins_minmaxvalue):
         #logger.info(f"返回时间戳: {formatted_time},{symbol}的最大值为{all_coins_minmaxvalue[symbol]['max_price']},最小值为{all_coins_minmaxvalue[symbol]['min_price']},POC值为{all_coins_minmaxvalue[symbol]['POC_value']},POC价格为{all_coins_minmaxvalue[symbol]['POC_price']}")
 
 def real_data_update():
-    Symbols = ['NEIROETHUSDT', 'NEIROUSDT', 'GOATUSDT', 'MOODENGUSDT', 'MEWUSDT', 'GRASSUSDT', 'TROYUSDT','DRIFTUSDT']
+    Symbols = ['MOVEUSDT','XLMUSDT','XRPUSDT','1000CHEEMSUSDT','ONEUSDT','HBARUSDT','NEIROUSDT', 'ACTUSDT','PNUTUSDT','GOATUSDT', 'MOODENGUSDT', 'BANUSDT','MEUSDT']
     all_coins_1h = {}
     all_coins_minmaxvalue_1h = {}
 
